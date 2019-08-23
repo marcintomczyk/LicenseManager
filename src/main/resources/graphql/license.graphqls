@@ -1,0 +1,59 @@
+scalar DateTime
+
+type License {
+    id: ID!
+    name: String!
+    secretKey: String!
+    status: String!
+    version: Long!
+    lastUpdate: DateTime!
+}
+
+type LicenseSimpleView {
+    id: ID!
+    name: String!
+    status: String!
+}
+
+# one can use extends type LicenseSimpleView but I do not like that I can't assign a name (so to create a type) to it
+type LicenseSecretView {
+    id: ID!
+    name: String!
+    status: String!
+    secretKey: String!
+}
+
+
+type Query {
+    licenses: [LicenseSimpleView]!
+    license(id: ID!) : LicenseSecretView!
+    licensesByStatus(status: LicenseStatus!): [LicenseSimpleView]!
+}
+
+enum LicenseStatus {
+    NEW
+    OK
+    STALE
+    UNHEALTHY
+}
+
+enum UpdateLicenseStatus {
+    OK
+    UNHEALTHY
+}
+
+type Mutation {
+    newLicense(input: CreateLicenseInput!) : License!
+    updateLicenseStatus(input: UpdateLicenseStatusInput!) : License!
+}
+
+input CreateLicenseInput {
+    name: String!
+    secretKey: String!
+}
+
+input UpdateLicenseStatusInput {
+    id: ID!
+    status:UpdateLicenseStatus!
+    secretKey:String!
+}

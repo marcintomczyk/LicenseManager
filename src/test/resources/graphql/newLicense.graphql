@@ -1,0 +1,6 @@
+mutation {
+  newLicense(input: {
+      name: "test-license-1",
+      secretKey: "aaa-1259589331-xxxx"
+    }){name secretKey status}
+}

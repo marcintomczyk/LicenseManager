@@ -1,0 +1,7 @@
+query {
+    licensesByStatus(status: NEW) {
+        id
+        name
+        status
+    }
+}

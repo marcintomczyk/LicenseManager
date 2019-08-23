@@ -1,0 +1,1 @@
+A sample SpringBoot app to learn a bit graphql

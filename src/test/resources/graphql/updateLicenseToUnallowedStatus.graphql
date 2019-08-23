@@ -1,0 +1,7 @@
+mutation {
+  updateLicenseStatus(input: {
+      id: "1",
+      status: STALE,
+      secretKey: "aaaa-xxxxx-11111"
+    }){id name secretKey status}
+}

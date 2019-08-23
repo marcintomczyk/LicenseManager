@@ -1,0 +1,30 @@
+Tested on Ubuntu 18.04
+
+1. Create an executable jar
+ - invoke the following command 'mvn clean package' - an executable jar file (license-manager-0.0.1-SNAPSHOT.jar) will be created in the target folder
+ 
+2. Create a user on which the service is going to be run
+ - sudo useradd licenseManager
+ - sudo passwd licenseManager
+
+3. Place the generated jar file in the following directory /opt/services
+ - NOTE: this location is used in license-manager.service script which you use in a moment
+ 
+4. Assign proper rights to the jar file
+ - sudo chown licenseManager:licenseManager license-manager-0.0.1-SNAPSHOT.jar
+ - sudo chmod 500 license-manager-0.0.1-SNAPSHOT.jar
+
+5. copy the file "license-manager.service" to /etc/systemd/system
+ - the file is available in the project's sources on the same level as the file you are reading now
+
+6. Enable and start the application
+ - sudo systemctl enable license-manager
+ - sudo systemctl start license-manager
+
+7. Removing service
+ - sudo systemctl stop license-manager
+ - sudo systemctl disable license-manager
+ - sudo rm /etc/systemd/system/license-manager
+ - sudo systemctl daemon-reload
+ # for cleanup all units with failed status
+ - sudo systemctl reset-failed

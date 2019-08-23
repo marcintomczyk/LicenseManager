@@ -1,0 +1,8 @@
+query {
+    license(id: 1) {
+        id
+        name
+        status
+        secretKey
+    }
+}
